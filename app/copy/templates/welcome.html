@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>{{ title }} -Home Page </title>
+        <style>
+            .bgimg {
+                background-image: url("../static/background1.jpg");
+                background-repeat: no-repeat;
+                background-size: 100% 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <div style="width:50%; float:left;"><a href="{{url_for('Welcome')}}">Welcome Page</a></div>
+        <div style="text-align:right;width:50%; float:right;"><a href="{{url_for('SignIn')}}">Sign In</a> or <a href="{{url_for('SignUp')}}">Sign Up</a></div>
+        <hr style="border-style:inset; border-width:2px;">
+        <div class="bgimg">
+            <br>
+            <p style="font-size:60px; text-align:center"><b>Welcome To ImageBay!</b></p>
+            <p style="font-size:40px; text-align:center">First time to ImageBay? Please <a href="{{url_for('SignUp')}}">Sign Up</a></p>
+            <p style="font-size:30px; text-align:center">or</p>
+            <p style="font-size:40px; text-align:center"><a href="{{url_for('SignIn')}}">Sign In</a> with your account</p><br>
+	    <p style="font-size:40px; text-align:center">Are you a TA? <a href="{{url_for('testUpload')}}">Check Here</a> To test</p>
+            <br><br><br>
+        </div>
+    </body>
+</html>

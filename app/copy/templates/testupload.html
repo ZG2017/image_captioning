@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <title>upload Form</title>
+  </head>
+  <body>
+    <div style="width:50%; float:left;"><a href="{{url_for('Welcome')}}">Welcome Page</a></div>
+    <div style="text-align:right;width:50%; float:right;"><a href="{{url_for('SignIn')}}">Sign In</a> or <a href="{{url_for('SignUp')}}">Sign Up</a></div>
+    <hr style="border-style:inset; border-width:2px;">
+    <h1>uploadForm</h1>
+    {{ error if error }}
+    <form action="{{url_for("testUploadSubmit")}}" enctype="multipart/form-data" method="post">
+      <fieldset>
+	<legend style="font:100;">Upload Image</legend>
+	Username:
+	<input type="string" name="userID">
+	<br>
+	Password:
+	<input type="string" name = "password">
+	<br>
+	Files to upload:<input type="file" name="uploadedfile">
+	<br>
+	<br>
+	<input type="submit" value="Summit">
+	<input type="reset">
+      </fieldset>
+    </form>
+  </body>
+<html>

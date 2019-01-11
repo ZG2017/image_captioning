@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title>{{ title }}'s Home Page --ImageBay</title>
+    </head>
+    
+    <body>
+        <div style="width:50%; float:left;">{{title}}'s homepage</div>
+        <div style="text-align:right"><a href="{{url_for('LogOut')}}">log Out</a></div>        
+        <hr style="border-style:inset; border-width:2px;">
+        <form action='{{url_for("UpLoad")}}' method='post' enctype='multipart/form-data' onsubmit="return validateForm()">
+            {{ error if error != None }}
+            <br>
+            Please select ONLY ONE image file:
+            <input type='file' id='new_file' name='my_file' accept='image/*'>
+            <br><br>
+            <input type="submit" value="Upload New File" />
+        </form>
+        <br>
+        {% for img in images %}
+            <a href="{{url_for("imgDetail",imgId = img)}}">
+                <img width='150px' height="100px" src="{{img}}">
+            </a>
+        {% endfor %}
+    </body>
+</html>

@@ -1,0 +1,39 @@
+.container {
+    paddng: 100px 200px;
+}
+
+.itemImage {
+	height: 100px;
+	width: 50px;
+	border: 5px solid transparent;
+}
+
+.itemImage:hover {
+    border-color: #f1f1f1;
+}
+
+.display {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+
+.displayCategory ul li {
+	font-size: 20px;
+}
+
+footer {
+    background-color:#2d2d30;
+    color:#f5f5f5;
+    padding: 32px;
+}
+
+footer a {
+    color: #f5f5f5;
+}
+
+footer a:hover{
+    color: #777;
+    text-decoration: none;
+}
+

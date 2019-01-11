@@ -1,0 +1,14 @@
+<html>
+    <head>
+        <title>{{ title }}'s Detail --ImageBay</title>
+    </head>
+
+    <body>
+        <div style="width:50%; float:left;"><a href="{{url_for('HomePage')}}">Back to HomePage</a></div>
+        <div style="text-align:right"><a href="{{url_for('LogOut')}}">log Out</a></div>        
+        <hr style="border-style:inset; border-width:2px;">
+        {% for img in images %}
+            <img src="{{img}}">
+        {% endfor %}
+    </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<script src="{{ url_for('static', filename='js/jquery-1.9.0.min.js') }}"></script>
+<script>
+    function play(){
+        $audio.play()
+    }
+
+</script>
+<body>
+<div>
+        <h2>IMAGE</h2>
+        <img src='{{path}}'>
+        <p>'{{result}}'</p>
+
+    <input type="button" onclick="play()" name="texttospeech" value="Text to Speech" /> <br/><br/>
+	<audio name="audio" id="audio" src="{{voice}}" controls></audio>
+
+</div>
+</body>
+</html>

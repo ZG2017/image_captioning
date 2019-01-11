@@ -1,0 +1,179 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Public</title>
+	<link rel="stylesheet" href={{url_for('static', filename='css/cart.css')}} />
+	<link rel="stylesheet" href={{url_for('static', filename='css/topStyle.css') }} />
+	<!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="../static/css/review.css"> -->
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <nav class = "navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{{url_for('community', searchName = ' ')}}">
+                    Visual Speaker
+                </a>
+            </div>
+
+            <form action={{url_for('image_search')}} method="POST" class="navbar-form navbar-left">
+                <div class = "input-group">
+                    <input type="text" class = "form-control" id = "search" value = '' name = "search" placeholder="Search">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="submit">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="nav-item dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">Hello, {{userName}}</a>
+                    <ul class="dropdown-menu">
+                        <li><a href={{url_for('user_homepage', userName = userName)}}>Your photos</a></li>
+                        <li><a href={{url_for('LogOut')}}><span class="glyphicon glyphicon-log-in"></span> Log out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="row">
+        <div class="col-6">
+            <nav class="navbar navbar-expand-lg">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#yummyfood-nav" aria-controls="yummyfood-nav" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars" aria-hidden="true"></i> Menu</button>
+                <!-- Menu Area Start -->
+                <div class="collapse navbar-collapse justify-content-center" id="yummyfood-nav">
+                    <ul class="navbar-nav" id="yummy-nav">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown">Sort by</a>
+                            <ul class="dropdown-menu">
+                                <li><a href={{url_for('community_sort_by_time')}}>Time</a></li>
+                                <li><a href={{url_for('community_sort_by_rate')}}>Review</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <br>
+
+    {% for result in images %}
+    <div class="img_container">
+        <div class="card card-1">
+            <img src="{{result['imagePath']}}">
+        </div>
+        <p>Text: {{result['text']}}</p>
+        <audio name="audio" id="audio" src="{{result['audioPath']}}" controls></audio>
+
+        <hr style="border:3px solid #f1f1f1">
+
+        <p>{{result['rating']}} average based on {{result['allNumber']}} reviews.</p>
+
+        <div class="row">
+            <div class="side">
+                <div>5 star</div>
+             </div>
+            <div class="middle">
+                <div class="bar-container">
+                    <div class="bar-5"></div>
+                </div>
+            </div>
+            <div class="side right">
+                <div>{{result['5Number']}}</div>
+            </div>
+            <div class="side">
+                <div>4 star</div>
+            </div>
+            <div class="middle">
+                <div class="bar-container">
+                    <div class="bar-4"></div>
+                </div>
+            </div>
+            <div class="side right">
+                <div>{{result['4Number']}}</div>
+            </div>
+            <div class="side">
+                <div>3 star</div>
+            </div>
+            <div class="middle">
+                <div class="bar-container">
+                    <div class="bar-3"></div>
+                </div>
+            </div>
+            <div class="side right">
+                <div>{{result['3Number']}}</div>
+            </div>
+            <div class="side">
+                <div>2 star</div>
+            </div>
+            <div class="middle">
+                <div class="bar-container">
+                    <div class="bar-2"></div>
+                </div>
+            </div>
+            <div class="side right">
+                <div>{{result['2Number']}}</div>
+            </div>
+            <div class="side">
+                <div>1 star</div>
+            </div>
+            <div class="middle">
+                <div class="bar-container">
+                    <div class="bar-1"></div>
+                </div>
+            </div>
+            <div class="side right">
+                <div>{{result['1Number']}}</div>
+            </div>
+        </div>
+
+        <hr style="border:3px solid #f1f1f1">
+        <form class="rating" method="POST" action="{{url_for('image_rating',userName = result['userName'], uploadTime = result['uploadTime'])}}">
+            <p>My rating</p>
+                <input type="radio"  name="rating" value="5" ><label for="star5" title="Awesome!">&#9733</label></input>
+                <input type="radio"  name="rating" value="4" ><label for="star4" title="I like it">&#9733</label></input>
+                <input type="radio"  name="rating" value="3" ><label for="star3" title="Fair">&#9733</label></input>
+                <input type="radio"  name="rating" value="2" ><label for="star2" title="Not bad">&#9733</label></input>
+                <input type="radio"  name="rating" value="1" ><label for="star1" title="Not good">&#9733</label></input>
+                <input type="submit" value="submit">
+        </form>
+        <br><br><br><br><br>
+    </div>
+    {% endfor %}
+
+
+
+<footer class="text-center">
+    <a class="up-arrow" href="#" data-toggle="tooltip" title="To TOP">
+        <span class="glyphicon glyphicon-chevron-up"></span>
+    </a><br><br>
+    <div id="time"></div>
+</footer>
+<script>
+    $(document).ready(function(){
+    // Initialize Tooltip
+    $('[data-toggle="tooltip"]').tooltip();
+})
+</script>
+<script language="javascript">
+    debugger;
+    function updateClock() {
+        var today = new Date();
+        document.getElementById('time').innerHTML = today
+
+        // call this function again in 1000ms
+        setTimeout(updateClock, 1000);
+    }
+    updateClock(); // initial call
+</script>
+</body>
+</html>
